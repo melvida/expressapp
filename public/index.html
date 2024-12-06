@@ -10,7 +10,7 @@
         .then(updates => {
           const list = updates.map(update => `
             <div class="update">
-              <p>Order: ${update.orderId}</p>
+              <p>Order: ${update.order_id}</p>
               <p>Status: ${update.status}</p>
               <p>Time: ${new Date(update.timestamp).toLocaleString()}</p>
             </div>
