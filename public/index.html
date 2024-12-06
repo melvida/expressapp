@@ -1,0 +1,36 @@
+// public/index.html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Order Updates</title>
+  <script>
+    function fetchUpdates() {
+      fetch('/updates')
+        .then(res => res.json())
+        .then(updates => {
+          const list = updates.map(update => `
+            <div class="update">
+              <p>Order: ${update.orderId}</p>
+              <p>Status: ${update.status}</p>
+              <p>Time: ${new Date(update.timestamp).toLocaleString()}</p>
+            </div>
+          `).join('');
+          document.getElementById('updates').innerHTML = list;
+        });
+    }
+    setInterval(fetchUpdates, 5000);
+    fetchUpdates();
+  </script>
+  <style>
+    .update {
+      border: 1px solid #ccc;
+      margin: 10px;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Order Status Updates</h1>
+  <div id="updates"></div>
+</body>
+</html>
